@@ -3,7 +3,8 @@
 **Examen práctico del segundo parcial · Programación Avanzada II**  
 Sistema de gestión para taller mecánico · Java, JDBC y SQL Server
 
-**Integrantes:** completar los nombres del equipo antes de entregar.  
+**Estudiante:** Gerson Josue Alberto Gonzales  
+**Número de cuenta:** 202310120169  
 **Repositorio:** https://github.com/6erson/AutoTechManager
 
 ## Propósito y alcance

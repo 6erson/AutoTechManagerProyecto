@@ -9,11 +9,11 @@ digraph G {
  PanelCatalogos [label="{PanelCatalogos|Servicios, personal e inventario}"];
  PanelOrdenes [label="{PanelOrdenes|Ordenes, presupuestos y pagos}"];
  PanelReportes [label="{PanelReportes|Reportes e historial}"];
- TallerService [label="{TallerService|+ crearOrden(...): int\l+ diagnostico(...): void\l+ agregarServicio(...): void\l+ presupuesto(...): BigDecimal\l+ decidir(...): void\l+ reservarMotor(...): void\l+ consumir(...): void\l+ estado(...): void\l+ pagar(...): void\l+ comprobante(...): String\l}"];
+ TallerService [label="{TallerService|+ crearOrden(...): int\l+ diagnostico(...): void\l+ agregarServicio(...): void\l+ presupuesto(...): BigDecimal\l+ decidir(...): void\l+ reservarMotor(...): void\l+ consumir(...): void\l+ estado(...): void\l+ pagar(...): void\l+ comprobanteHtml(...): String\l}"];
  Sql [label="{Sql|+ consultar(...): Tabla\l+ ejecutar(...): int\l+ insertar(...): int\l}"];
  ConexionDB [label="{ConexionDB|+ getConexion(): Connection}"];
  Repositorio [label="{«interface» Repositorio T|+ listar(): List T\l+ guardar(entidad): void\l}"];
- ClienteDAO [label="{ClienteDAO|+ listar(): List Cliente\l+ guardar(cliente): void\l+ desactivar(id): void\l}"];
+ ClienteDAO [label="{ClienteDAO|+ listar(): List Cliente\l+ guardar(cliente): void\l}"];
  VehiculoDAO [label="{VehiculoDAO|+ listar(): List Vehiculo\l+ guardar(vehiculo): void\l}"];
  Servicio [label="{«abstract» Servicio|+ nombre(): String\l+ costoManoObra(): BigDecimal\l+ requisitoEntrega(): String (abstracto)\l+ crear(...): Servicio (estatico)\l}"];
  ServicioGeneral [label="{ServicioGeneral|+ requisitoEntrega(): String}"];

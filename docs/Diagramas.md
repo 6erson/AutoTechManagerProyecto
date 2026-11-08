@@ -81,6 +81,7 @@ erDiagram
         int ProveedorId FK
         string Codigo UK
         string Nombre
+        string Unidad
         int Stock
         int Minimo
         decimal Costo
@@ -233,7 +234,7 @@ classDiagram
         +consumir(orden) void
         +estado(orden, nuevo) void
         +pagar(orden, monto, metodo, referencia) void
-        +comprobante(orden) String
+        +comprobanteHtml(orden) String
     }
     class Sql { +consultar(connection, sql, args) Tabla }
     class ConexionDB { +getConexion() Connection }

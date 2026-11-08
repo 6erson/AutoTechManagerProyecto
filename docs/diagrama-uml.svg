@@ -105,18 +105,17 @@
 <!-- ClienteDAO -->
 <g id="node12" class="node">
 <title>ClienteDAO</title>
-<polygon fill="#edf3f9" stroke="#496987" points="609.47,-226.9 609.47,-322.9 743.88,-322.9 743.88,-226.9 609.47,-226.9"/>
-<text xml:space="preserve" text-anchor="middle" x="676.68" y="-302.2" font-family="Arial" font-size="11.00">ClienteDAO</text>
-<polyline fill="none" stroke="#496987" points="609.47,-288.1 743.88,-288.1"/>
-<text xml:space="preserve" text-anchor="start" x="620.27" y="-267.4" font-family="Arial" font-size="11.00">+ listar(): List Cliente</text>
-<text xml:space="preserve" text-anchor="start" x="620.27" y="-254.2" font-family="Arial" font-size="11.00">+ guardar(cliente): void</text>
-<text xml:space="preserve" text-anchor="start" x="620.27" y="-241" font-family="Arial" font-size="11.00">+ desactivar(id): void</text>
+<polygon fill="#edf3f9" stroke="#496987" points="609.47,-233.5 609.47,-316.3 743.88,-316.3 743.88,-233.5 609.47,-233.5"/>
+<text xml:space="preserve" text-anchor="middle" x="676.68" y="-295.6" font-family="Arial" font-size="11.00">ClienteDAO</text>
+<polyline fill="none" stroke="#496987" points="609.47,-281.5 743.88,-281.5"/>
+<text xml:space="preserve" text-anchor="start" x="620.27" y="-260.8" font-family="Arial" font-size="11.00">+ listar(): List Cliente</text>
+<text xml:space="preserve" text-anchor="start" x="620.27" y="-247.6" font-family="Arial" font-size="11.00">+ guardar(cliente): void</text>
 </g>
 <!-- PanelTaller&#45;&gt;ClienteDAO -->
 <g id="edge10" class="edge">
 <title>PanelTaller&#45;&gt;ClienteDAO</title>
-<path fill="none" stroke="#657e96" d="M771.4,-428.6C754.81,-401.85 731.39,-364.1 712,-332.84"/>
-<polygon fill="#657e96" stroke="#657e96" points="715.16,-331.3 706.92,-324.65 709.21,-334.99 715.16,-331.3"/>
+<path fill="none" stroke="#657e96" d="M771.4,-428.6C753.62,-399.93 728.01,-358.66 707.91,-326.24"/>
+<polygon fill="#657e96" stroke="#657e96" points="710.9,-324.43 702.66,-317.78 704.95,-328.12 710.9,-324.43"/>
 </g>
 <!-- VehiculoDAO -->
 <g id="node13" class="node">
@@ -148,7 +147,7 @@
 <text xml:space="preserve" text-anchor="start" x="395.55" y="-234.4" font-family="Arial" font-size="11.00">+ consumir(...): void</text>
 <text xml:space="preserve" text-anchor="start" x="395.55" y="-221.2" font-family="Arial" font-size="11.00">+ estado(...): void</text>
 <text xml:space="preserve" text-anchor="start" x="395.55" y="-208" font-family="Arial" font-size="11.00">+ pagar(...): void</text>
-<text xml:space="preserve" text-anchor="start" x="395.55" y="-194.8" font-family="Arial" font-size="11.00">+ comprobante(...): String</text>
+<text xml:space="preserve" text-anchor="start" x="395.55" y="-194.8" font-family="Arial" font-size="11.00">+ comprobanteHtml(...): String</text>
 </g>
 <!-- PanelCatalogos&#45;&gt;TallerService -->
 <g id="edge7" class="edge">
@@ -244,21 +243,21 @@
 <!-- ClienteDAO&#45;&gt;ConexionDB -->
 <g id="edge15" class="edge">
 <title>ClienteDAO&#45;&gt;ConexionDB</title>
-<path fill="none" stroke="#657e96" d="M687.75,-226.64C696.48,-189.34 708.58,-137.65 717.17,-100.98"/>
-<polygon fill="#657e96" stroke="#657e96" points="720.5,-102.12 719.37,-91.58 713.68,-100.52 720.5,-102.12"/>
+<path fill="none" stroke="#657e96" d="M686.21,-233.19C695,-195.65 708.03,-140.02 717.13,-101.16"/>
+<polygon fill="#657e96" stroke="#657e96" points="720.48,-102.18 719.36,-91.64 713.67,-100.58 720.48,-102.18"/>
 </g>
 <!-- ClienteDAO&#45;&gt;Repositorio -->
 <g id="edge12" class="edge">
 <title>ClienteDAO&#45;&gt;Repositorio</title>
-<path fill="none" stroke="#657e96" stroke-dasharray="5,2" d="M715.27,-226.78C728.52,-211.43 743.78,-194.65 758.68,-180.2 786.27,-153.45 819,-126.08 846.92,-103.88"/>
+<path fill="none" stroke="#657e96" stroke-dasharray="5,2" d="M709.61,-233.38C724.07,-216.38 741.61,-196.75 758.68,-180.2 786.27,-153.45 819,-126.08 846.92,-103.88"/>
 <polygon fill="none" stroke="#657e96" points="848.94,-106.74 854.62,-97.8 844.6,-101.25 848.94,-106.74"/>
 <text xml:space="preserve" text-anchor="middle" x="828.28" y="-142.2" font-family="Arial" font-size="10.00">implementa</text>
 </g>
 <!-- ClienteDAO&#45;&gt;Modelos -->
 <g id="edge20" class="edge">
 <title>ClienteDAO&#45;&gt;Modelos</title>
-<path fill="none" stroke="#657e96" d="M654.11,-226.64C639.28,-195.57 619.68,-154.53 603.43,-120.49"/>
-<polygon fill="#657e96" stroke="#657e96" points="606.62,-119.05 599.15,-111.54 600.3,-122.07 606.62,-119.05"/>
+<path fill="none" stroke="#657e96" d="M657.24,-233.19C642.09,-201.45 620.76,-156.79 603.31,-120.25"/>
+<polygon fill="#657e96" stroke="#657e96" points="606.62,-119.06 599.16,-111.55 600.31,-122.08 606.62,-119.06"/>
 </g>
 <!-- VehiculoDAO&#45;&gt;ConexionDB -->
 <g id="edge16" class="edge">

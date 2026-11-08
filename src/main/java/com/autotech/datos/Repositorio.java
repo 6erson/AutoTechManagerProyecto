@@ -5,5 +5,6 @@ import java.util.List;
 
 public interface Repositorio<T> {
     List<T> listar() throws SQLException;
+
     void guardar(T entidad) throws SQLException;
 }

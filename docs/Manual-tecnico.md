@@ -11,12 +11,12 @@ Aplicación Java 26, Swing, JDBC de Microsoft 12.10.1.jre11 y SQL Server. Maven 
 | Datos | ConexionDB obtiene conexiones; ClienteDAO y VehiculoDAO implementan Repositorio; Sql ejecuta sentencias parametrizadas y materializa resultados. |
 | Modelos | Cliente, Vehiculo, Mecanico y OrdenTrabajo. Servicio es abstracta y ServicioGeneral/ServicioMayor implementan requisitos de entrega distintos. |
 
-El JFrame y su .form inicial se conservan. La interfaz funcional se construye en paneles Java; las pantallas nuevas no se editan arrastrando controles en el diseñador. Esto evita que NetBeans regenere la lógica.
+FrmPrincipal contiene unicamente la ventana principal y PanelSistema. La interfaz se construye en paneles Java; se elimino el formulario .form antiguo que ya no se mostraba. La entrada del programa es AutoTechManager.
 
 ## Instalación
 
 1. Instalar JDK 26, NetBeans con Maven y SQL Server con TCP/IP.
-2. En SSMS ejecutar en orden sql/01_clientes_vehiculos.sql y sql/02_taller_completo.sql. Opcionalmente ejecutar sql/03_catalogos_iniciales.sql para cargar cinco servicios, tres mecánicos, un proveedor, tres repuestos y un motor de ejemplo. Este catálogo no crea existencias, clientes ni órdenes.
+2. En SSMS ejecutar en orden sql/01_clientes_vehiculos.sql y sql/02_taller_completo.sql. Opcionalmente ejecutar sql/03_catalogos_iniciales.sql para cargar cinco servicios, tres mecánicos, un proveedor, tres repuestos y un motor de ejemplo. Este catálogo no crea existencias, clientes ni órdenes. Ejecutar despues sql/04_unidades_repuestos.sql para agregar las unidades de medida; es obligatorio aun si no se cargan los catalogos de ejemplo.
 3. Configurar URL, USER y PASSWORD en datos/ConexionDB.java. La base del script es AutoTechManager. La copia de GitHub deja PASSWORD vacío; colocar la contraseña local antes de compilar. No publicar claves reales.
 4. Abrir pom.xml como proyecto Maven en NetBeans. Seleccionar JDK 26 y ejecutar AutoTechManager.
 5. Para distribuir: ejecutar `mvn clean package` y usar el jar terminado en jar-with-dependencies; o ejecutar `powershell -ExecutionPolicy Bypass -File compilar.ps1` para crear dist/AutoTechManager.jar con dist/lib/mssql-jdbc.jar. Ejecutar iniciar.bat. La carpeta dist requiere Java 26 y SQL Server configurado.
@@ -27,30 +27,34 @@ Los scripts de tablas son repetibles: crean objetos faltantes y actualizan proce
 
 ### Clientes y vehículos
 
-Guardar un cliente, seleccionarlo para editar o desactivarlo conservando historial. Registrar sus vehículos con placa y VIN únicos. El propietario debe estar activo. Un cliente puede tener varios vehículos. La tabla se ordena pulsando sus encabezados.
+Guardar un cliente, seleccionarlo para editar o desactivarlo conservando historial. Al seleccionar un cliente inactivo aparece Reactivar cliente; la reactivación conserva sus vehículos y órdenes. Registrar sus vehículos con placa y VIN únicos. El propietario debe estar activo. Un cliente puede tener varios vehículos. La tabla se ordena pulsando sus encabezados.
 
 ### Catálogos e inventario
 
 El desplegable cambia entre servicios, mecánicos, proveedores, repuestos y motores. Nuevo/Editar administra los campos. Activar/desactivar conserva referencias históricas; los motores se gestionan por disponibilidad, reserva e instalación.
 
-Para aumentar stock elegir Repuestos, seleccionar una fila y pulsar Entrada de inventario. Registrar cantidad y motivo. El stock no es editable directamente. Repuesto de servicio asocia una cantidad sugerida al servicio seleccionado; al añadir el servicio a una orden se copian esos consumos. Para modificar una asociación, guardarla nuevamente con la cantidad correcta.
+Para aumentar stock elegir Repuestos, seleccionar una fila y pulsar Entrada de inventario. Registrar cantidad y motivo. El stock no es editable directamente. Repuesto de servicio asocia una cantidad sugerida al servicio seleccionado; es una referencia del catálogo y no agrega consumos automáticamente. Cada cantidad se registra explícitamente en la orden. Para modificar una asociación, guardarla nuevamente con la cantidad correcta.
 
 El motor se registra por serie única y compatibilidad de marca, modelo, rango de años y combustible. Sus unidades físicas se contabilizan en el repuesto asociado; antes de reservar, registrar entrada de stock.
 
 ### Órdenes y pagos
 
+La pantalla muestra una guía de seis etapas: recepción, diagnóstico, aprobación, reparación, calidad y entrega. La etapa actual aparece en azul y las completadas en verde. Arriba se indica el siguiente paso y se cuentan actividades, consumos y controles pendientes. Solo se muestran acciones de la etapa actual; las acciones secundarias están en **Más opciones...**.
+
+Al crear una orden queda seleccionada automáticamente. Al cambiar de etapa, el detalle inferior muestra la sección correspondiente. Los botones de transición tienen nombres concretos: Iniciar diagnóstico, Enviar a aprobación, Pasar a calidad y Entregar vehículo. En los pasos siguientes, «Avanzar estado» se refiere a ese botón contextual. Completar actividad y Aprobar control aparecen arriba al consultar Actividades o Calidad. Asignar mecánico, agregar actividad/control, pagos durante reparación y cancelación están en Más opciones.
+
 Seleccionar una orden en la tabla superior. La parte inferior permite consultar servicios, repuestos, diagnóstico, presupuesto, mecánicos, actividades, calidad, cambio de motor, pagos y auditoría.
 
-1. Nueva orden: escoger vehículo y responsable disponible; registrar kilometraje, síntomas y diagnóstico preliminar.
+1. Nueva orden: escoger vehículo por marca, modelo, año y placa, y responsable disponible; registrar kilometraje, síntomas y diagnóstico preliminar.
 2. Avanzar estado a En diagnóstico. Completar diagnóstico y evidencias; asignar apoyos si hacen falta.
-3. Agregar servicios y repuestos. Los servicios copian el costo base del catálogo como importe fijo de mano de obra; las horas son una estimación informativa. No se multiplica el costo base por las horas.
+3. Agregar servicios y repuestos por separado. La cantidad del repuesto es el total deseado en la orden: guardarla nuevamente reemplaza ese total, no lo suma. Los servicios copian el costo base del catálogo como importe fijo de mano de obra; las horas son una estimación informativa. No se multiplica el costo base por las horas.
 4. Generar presupuesto con descuento autorizado e impuesto configurable. Cualquier modificación posterior de servicios/repuestos durante diagnóstico invalida el presupuesto y obliga a generarlo otra vez.
-5. Avanzar a Pendiente de aprobación. Decisión del cliente registra constancia de aprobación/rechazo. Aprobar pasa a reparación; rechazar cierra la orden.
+5. Avanzar a Pendiente de aprobación. Mientras no exista decisión del cliente, Corregir presupuesto permite volver a diagnóstico; invalida el presupuesto anterior y exige generarlo de nuevo. Decisión del cliente registra constancia de aprobación/rechazo. Aprobar pasa a reparación; rechazar cierra la orden.
 6. En reparación completar todas las actividades desde la tabla inferior. Trabajo y calidad permite agregar actividades o controles. Procesar consumos descuenta todas las cantidades pendientes en una sola operación.
 7. En cambios de motor registrar pruebas y garantía antes de pasar a calidad.
 8. Avanzar a En control de calidad; seleccionar cada control obligatorio y Aprobar control con su resultado. Avanzar a Finalizada y entregada.
 9. Registrar pagos parciales o totales sin superar el saldo. Se permiten pagos de órdenes aprobadas abiertas o entregadas. La entrega no exige saldo cero; el reporte conserva la cuenta pendiente.
-10. Comprobante muestra el documento interno imprimible y permite guardarlo en .txt. Incluye importes, abonos, saldo y garantía del motor cuando corresponda. No es una factura fiscal autorizada ni usa JasperReports.
+10. Comprobante muestra un documento blanco con texto negro, tablas y resumen de cuenta, listo para imprimir y permite guardarlo en HTML. Incluye importes, abonos, saldo y garantía del motor cuando corresponda. No es una factura fiscal autorizada ni usa JasperReports.
 
 La cancelación se permite si no hay pagos ni consumos procesados. Libera reservas de motores. No se implementan devoluciones de pagos/inventario; por eso una orden con operaciones financieras no se cancela desde esta aplicación.
 
@@ -95,3 +99,9 @@ Ejecutar desde la raíz del proyecto, con target/classes, target/test-classes y 
 ## Repositorio
 
 https://github.com/6erson/AutoTechManager
+
+## Presentacion y reportes
+
+La interfaz usa etiquetas sin tildes; los datos ingresados por el usuario se conservan. Importes y cantidades muestran separadores de miles con coma y decimales con punto. Los campos numericos admiten valores como 1,234.50. Anios, placas e identificadores no se agrupan.
+
+El comprobante y el presupuesto muestran subtotal antes del descuento, impuesto en porcentaje y en lempiras, total, abonos y saldo. Los repuestos indican su unidad (Unidad, Litro o Juego). En Reportes se puede elegir Todos los vehiculos o uno especifico; el selector solo se habilita en reportes compatibles. Las consultas vacias muestran un aviso.

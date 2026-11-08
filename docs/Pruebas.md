@@ -2,7 +2,7 @@
 
 Fecha local: 7 de noviembre de 2026. JDK 26.0.2, driver JDBC 12.10.1.jre11 y SQL Server local.
 
-Resultado del arnés PruebasIntegracion: **34 comprobaciones aprobadas**. Base aislada utilizada: AutoTechManager_Pruebas_1794102307575. Los datos de prueba no se insertaron en AutoTechManager.
+Resultado del arnés PruebasIntegracion: **38 comprobaciones aprobadas**. Base aislada utilizada: AutoTechManager_Pruebas_1794111420458. Los datos de prueba no se insertaron en AutoTechManager.
 
 | Área | Evidencia |
 |---|---|
@@ -21,3 +21,9 @@ Resultado del arnés PruebasIntegracion: **34 comprobaciones aprobadas**. Base a
 También se verificó compilación Java y renderizado de seis vistas Swing: servicios, inventario, actividades, cambio de motor, presupuesto y reportes. Las capturas del informe usan datos de la base aislada. El precio 9999 del servicio de aceite que puede aparecer en la captura corresponde a la prueba deliberada de conservación de precios históricos; no es el precio inicial del catálogo real.
 
 No se automatizaron los clics de todos los diálogos ni una impresión física. Los comprobantes se validaron por contenido; la impresión depende de la impresora de Windows. El guion de defensa sirve como recorrido manual en NetBeans.
+
+Corrección de cantidades: agregar servicios no crea consumos; registrar el mismo repuesto guarda la cantidad total indicada sin acumularla. Se verificó la revisión de presupuestos pendientes y el bloqueo de revisión después de aprobación.
+
+Se verificaron 12 condiciones adicionales de presentacion: agrupacion de importes y cantidades, anios/IDs intactos, entrada numerica con comas, etiquetas sin tildes, nombres del usuario conservados, cantidades sin redondeo oculto, subtotal/impuesto/unidad en comprobante, filtro de todos/un vehiculo, resultado correcto, aviso vacio y filtro desactivado donde no aplica.
+
+Las verificaciones de presentacion y consultas estan en src/test/java/com/autotech/ui/PruebasPresentacion.java; su argumento es el nombre de la base aislada creada por PruebasIntegracion.

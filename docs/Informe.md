@@ -61,6 +61,6 @@ Se consultan cuentas, existencias bajas, movimientos, ingresos, disponibilidad e
 
 ## Validación y demostración
 
-Se aprobaron **34 comprobaciones de integración**, incluyendo los dos recorridos de defensa, rollback por falta de stock y pruebas de concurrencia en consumos/pagos. [Resultados y límites de la verificación](Pruebas.md).
+Se aprobaron **38 comprobaciones de integración**, incluyendo los dos recorridos de defensa, rollback por falta de stock y pruebas de concurrencia en consumos/pagos. [Resultados y límites de la verificación](Pruebas.md).
 
 El [guion de defensa](Guion-defensa.md) detalla el registro de un cliente con dos vehículos, la reparación básica y la sustitución de motor. El comprobante es interno e imprimible; no se usa JasperReports. Evidencias, autorizaciones y garantía se registran como texto.

@@ -16,7 +16,7 @@ Sistema de taller mecánico para el examen de Programación Avanzada II. Java 26
 ## Ejecutar en NetBeans
 
 1. Abrir esta carpeta como proyecto Maven y usar JDK 26.
-2. Ejecutar en SQL Server Management Studio los scripts `sql/01_clientes_vehiculos.sql`, `sql/02_taller_completo.sql` y, si deseas catálogos de ejemplo, `sql/03_catalogos_iniciales.sql`.
+2. Ejecutar en SQL Server Management Studio los scripts `sql/01_clientes_vehiculos.sql`, `sql/02_taller_completo.sql` y, si deseas catálogos de ejemplo, `sql/03_catalogos_iniciales.sql`. Ejecutar tambien `sql/04_unidades_repuestos.sql`, requerido para las unidades de inventario.
 3. En `src/main/java/com/autotech/datos/ConexionDB.java`, completar URL, USER y PASSWORD con los datos locales. La base creada por los scripts es `AutoTechManager`. El repositorio no incluye una contraseña real.
 4. Ejecutar `com.autotech.AutoTechManager`.
 5. Registrar entradas de inventario antes de consumir repuestos. El catálogo de ejemplo comienza con stock cero.

@@ -1,0 +1,6 @@
+target/
+tmp/
+dist/
+config/database.properties
+nbproject/private/
+*.log
